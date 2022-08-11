@@ -1,0 +1,82 @@
+button {
+  cursor: pointer;
+}
+body {
+  background-color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.divLoginMain {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  width: 21rem;
+  height: 26rem;
+  margin-top: 3rem;
+  border-radius: 5px;
+
+  background: #212529;
+}
+h1 {
+  color: rgba(255, 87, 127, 1);
+  margin: 3rem 0rem 0rem 6rem;
+  font-size: 26px;
+}
+.divForm {
+  display: flex;
+  flex-direction: column;
+}
+.divForm > h3 {
+  color: white;
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 2rem 0rem 1.2rem 0rem;
+  gap: 10px;
+  box-sizing: border-box;
+  color: rgba(248, 249, 250, 1);
+  font-size: 12px;
+}
+.form label {
+  align-self: flex-start;
+}
+.form > input {
+  background: #343b41;
+  color: beige;
+  width: 13rem;
+  height: 1.5rem;
+  border: 1.2182px solid #f8f9fa;
+  border-radius: 4px;
+}
+.form > button {
+  width: 13.5rem;
+  height: 2rem;
+
+  background: #ff577f;
+  color: white;
+  border: 1.2182px solid #ff577f;
+  border-radius: 4.06066px;
+}
+.divCadastro {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  color: #868e96;
+  font-size: 12px;
+  margin-left: 2rem;
+}
+.divCadastro button {
+  background: #868e96;
+  color: white;
+  border: 1.2182px solid #868e96;
+  border-radius: 4px;
+  width: 9rem;
+  height: 2rem;
+}

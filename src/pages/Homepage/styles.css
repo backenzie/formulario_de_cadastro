@@ -1,0 +1,76 @@
+body {
+  background-color: rgba(18, 18, 20, 1);
+  box-sizing: border-box;
+  color: white;
+}
+button {
+  cursor: pointer;
+  display: flex;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+
+  width: 4rem;
+  height: 2rem;
+
+  background: #212529;
+  border-radius: 4px;
+
+  color: rgba(248, 249, 250, 1);
+  font-size: 0.6rem;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+
+  width: 95vw;
+  height: 95vh;
+}
+header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 12rem;
+  height: 4rem;
+}
+header > h1 {
+  color: rgba(255, 87, 127, 1);
+  margin: 0px;
+}
+.divUser {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+
+  height: 5rem;
+
+  border-top: 2px solid rgba(33, 37, 41, 1);
+  border-bottom: 2px solid rgba(33, 37, 41, 1);
+}
+.divUser h3 {
+  font-weight: 700;
+  font-size: 1.2rem;
+
+  color: #f8f9fa;
+}
+.divUser span {
+  font-weight: 400;
+  font-size: 0.8rem;
+
+  color: #868e96;
+}
+.divMessage {
+  display: flex;
+  flex-direction: column;
+  margin-left: 14rem;
+}
+.divMessage h4 {
+  font-size: 1rem;
+}
+.divMessage p {
+  font-weight: 400;
+  font-size: 1rem;
+
+  color: rgb(207, 107, 107);
+}
