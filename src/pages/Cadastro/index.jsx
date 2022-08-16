@@ -1,9 +1,8 @@
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { toast } from 'react-toastify';
-import { api } from '../../services/api';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 
 import './style.css';
 
@@ -35,19 +34,8 @@ export const Cadastro = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const navigate = useNavigate();
-  async function registerUser(data) {
-    // console.log(data);
-    await api.post('/users', data).then(() => {
-      toast.success('Conta criada com sucesso!');
-      setTimeout(() => {
-        navigate('/');
-      }, 5000);
-    });
-  }
-  function exit() {
-    navigate('/');
-  }
+
+  const { exit, registerUser } = useContext(AuthContext);
 
   return (
     <div className="divMain">

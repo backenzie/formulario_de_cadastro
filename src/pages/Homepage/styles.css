@@ -62,8 +62,8 @@ header > h1 {
 }
 .divMessage {
   display: flex;
+  align-items: center;
   flex-direction: column;
-  margin-left: 14rem;
 }
 .divMessage h4 {
   font-size: 1rem;

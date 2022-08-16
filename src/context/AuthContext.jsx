@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-constructed-context-values */
 /* eslint-disable no-unused-vars */
 import { createContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -12,6 +13,18 @@ const AuthProvider = ({ children }) => {
 
   const navigate = useNavigate();
 
+  async function registerUser(data) {
+    // console.log(data);
+    await api.post('/users', data).then(() => {
+      alert('Conta criada com sucesso');
+      setTimeout(() => {
+        navigate('/');
+      }, 3000);
+    });
+  }
+  function exit() {
+    navigate('/');
+  }
   useEffect(() => {
     async function loadUser() {
       const token = localStorage.getItem('@TOKEN');
@@ -21,6 +34,7 @@ const AuthProvider = ({ children }) => {
 
           const { data } = await api.get('/profile');
           setUser(data);
+          navigate('/home');
         } catch (error) {
           console.log(error);
         }
@@ -43,9 +57,15 @@ const AuthProvider = ({ children }) => {
     navigate('/home', { replace: true });
   };
 
+  function goToCadastro() {
+    navigate('/cadastro', { replace: true });
+  }
+
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
-    <AuthContext.Provider value={{ user, login, loading }}>
+    <AuthContext.Provider
+      value={{ user, login, loading, registerUser, exit, goToCadastro }}
+    >
       {children}
     </AuthContext.Provider>
   );

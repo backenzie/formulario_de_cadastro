@@ -1,5 +1,4 @@
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 // import { useState } from 'react';
 import * as yup from 'yup';
@@ -22,13 +21,8 @@ export const Login = () => {
     resolver: yupResolver(schema),
   });
 
-  const { login } = useContext(AuthContext);
+  const { login, goToCadastro } = useContext(AuthContext);
 
-  const location = useNavigate();
-
-  function goToCadastro() {
-    location('/cadastro', { replace: true });
-  }
   return (
     <>
       <h1>Kenzie Hub</h1>
