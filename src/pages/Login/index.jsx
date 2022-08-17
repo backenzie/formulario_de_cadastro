@@ -1,11 +1,9 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-// import { useState } from 'react';
 import * as yup from 'yup';
-// import { api } from '../../services/api';
-import './style.css';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import './style.css';
 
 const schema = yup.object({
   email: yup.string().email().required('Campo Obrigatório'),

@@ -1,22 +1,21 @@
-import { useNavigate, Navigate } from 'react-router-dom';
+/* eslint-disable react/no-array-index-key */
 import { useContext } from 'react';
+import { Navigate } from 'react-router-dom';
+import { ModalAddTech } from '../../components/modalAddTech';
+
 import { AuthContext } from '../../context/AuthContext';
 
 import './styles.css';
 
 export const Home = () => {
-  const navigate = useNavigate();
+  const { user, loading, logout, modalAdd, setModalAdd, removeTech } =
+    useContext(AuthContext);
 
-  const { user, loading } = useContext(AuthContext);
-
-  function logout() {
-    navigate('/', { replace: true });
-    localStorage.removeItem('@USERID');
-    localStorage.removeItem('@TOKEN');
-  }
   if (loading) return <div>Carregando...</div>;
+
   return user ? (
     <div className="container">
+      {modalAdd && <ModalAddTech setModalAdd={setModalAdd} />}
       <header>
         <h1>Kenzie Hub</h1>
         <button onClick={logout} type="button">
@@ -27,9 +26,38 @@ export const Home = () => {
         <h3>{`Olá ${user.name}`}</h3>
         <span>{user.course_module}</span>
       </div>
-      <div className="divMessage">
-        <h4>Que pena! Estamos em desenvolvimento...</h4>
-        <p>Nossa aplicação esta em desenvolvimento, em breve novidades...</p>
+      <div className="contanerTechs">
+        <div className="headerTechs">
+          <p>Tecnologias</p>
+          <button
+            type="button"
+            onClick={() => {
+              setModalAdd(true);
+            }}
+          >
+            +
+          </button>
+        </div>
+        <div className="divUl">
+          <ul>
+            {user.techs.map((resp) => (
+              <li key={resp.id}>
+                <div className="divTechs">
+                  <span>{resp.title}</span>
+                  <p>{resp.status}</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    removeTech(resp.id);
+                  }}
+                >
+                  X
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   ) : (

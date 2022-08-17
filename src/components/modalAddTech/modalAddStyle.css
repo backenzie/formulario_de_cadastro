@@ -1,0 +1,91 @@
+.divContainer {
+  width: 95vw;
+  height: 95vh;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  display: inherit;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 20rem;
+  height: 20rem;
+
+  background: #212529;
+  box-shadow: 0px 4px 40px -10px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+}
+.divHeaderAddTech {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  width: 100%;
+  border-radius: 4px 4px 0px 0px;
+  margin-bottom: 1.5rem;
+
+  font-size: 11px;
+  color: #f8f9fa;
+  background: #343b41;
+}
+.divHeaderAddTech > button {
+  border: none;
+  background-color: transparent;
+  font-size: 0.8rem;
+  color: rgba(134, 142, 150, 1);
+}
+.formAddTech {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 85%;
+  color: rgba(248, 249, 250, 1);
+  font-size: 14px;
+}
+.formAddTech > label {
+  margin-bottom: 10px;
+}
+.formAddTech > input {
+  display: flex;
+  align-items: center;
+
+  height: 2rem;
+  color: white;
+  background: #343b41;
+  border: 1.2182px solid #f8f9fa;
+  border-radius: 4px;
+}
+.formAddTech > select {
+  display: flex;
+  align-items: center;
+
+  height: 2rem;
+  color: white;
+  background: #343b41;
+
+  border: 1.2182px solid #f8f9fa;
+  border-radius: 4px;
+}
+.pStatus {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.formAddTech > button {
+  width: 17rem;
+  height: 2.5rem;
+  margin-top: 1rem;
+
+  background: #ff577f;
+  color: white;
+  font-size: 14px;
+
+  border: 1.2182px solid #ff577f;
+  border-radius: 4.06066px;
+}
