@@ -11,7 +11,7 @@ export const Home = () => {
   const { user, loading, logout, modalAdd, setModalAdd, removeTech } =
     useContext(AuthContext);
 
-  if (loading) return <div>Carregando...</div>;
+  if (loading) return <Navigate to="/" />;
 
   return user ? (
     <div className="container">
