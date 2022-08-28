@@ -5,17 +5,27 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { AuthContext } from '../../context/AuthContext';
 import './modalAddStyle.css';
+import { Interface } from 'readline';
 
 const schema = yup.object({
   title: yup.string().required('Nome da tech Obrigatório!'),
 });
 
-export const ModalAddTech = ({ setModalAdd }) => {
+export interface ITittleTech {
+  title: string;
+  status: string;
+}
+
+interface ISetModalAdd {
+  setModalAdd: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const ModalAddTech = ({ setModalAdd }: ISetModalAdd) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<ITittleTech>({
     resolver: yupResolver(schema),
   });
 

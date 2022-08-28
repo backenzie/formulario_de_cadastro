@@ -9,13 +9,16 @@ const schema = yup.object({
   email: yup.string().email().required('Campo Obrigatório'),
   password: yup.string().required('Senha ou E-mail incorretos'),
 });
-
+export interface ILoginData {
+  email: string;
+  password: string;
+}
 export const Login = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<ILoginData>({
     resolver: yupResolver(schema),
   });
 

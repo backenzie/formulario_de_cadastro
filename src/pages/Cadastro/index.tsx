@@ -26,12 +26,21 @@ const schema = yup.object({
   contact: yup.string().required('Contato é Obrigatório'),
 });
 
+export interface IUserRegister {
+  name: string;
+  email: string;
+  password: string;
+  bio: string;
+  contact: string;
+  course_module: string[];
+}
+
 export const Cadastro = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IUserRegister>({
     resolver: yupResolver(schema),
   });
 

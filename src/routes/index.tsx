@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router-dom';
-
 import { Cadastro } from '../pages/Cadastro';
 import { Login } from '../pages/Login';
 import { Home } from '../pages/Homepage';

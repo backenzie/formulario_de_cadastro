@@ -1,22 +1,69 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 /* eslint-disable no-unused-vars */
-import { createContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import { createContext, ReactNode, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import toast, { Toaster } from 'react-hot-toast';
+import { IUserRegister } from '../pages/Cadastro';
+import { ILoginData } from '../pages/Login';
+import { ITittleTech } from '../components/modalAddTech';
 import { api } from '../services/api';
 
-export const AuthContext = createContext({});
+export const AuthContext = createContext({} as IAuthContext);
 
-// eslint-disable-next-line react/prop-types
-const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState({});
+interface ITechId {}
+
+interface IAuthProviderProps {
+  children: ReactNode;
+}
+
+interface ITech {
+  id: string;
+  title: string;
+  status: string;
+  created_at: Date;
+  updated_at: Date;
+}
+
+interface IUser {
+  id: string;
+  name: string;
+  email: string;
+  course_module: string;
+  bio: string;
+  contact: string;
+  avatar_url: string;
+  techs?: ITech[];
+  created_at: Date;
+  updated_at: Date;
+}
+
+interface ISession {
+  user: IUser;
+  token: string;
+}
+
+interface IAuthContext {
+  user: IUser;
+  modalAdd: boolean;
+  loading: boolean;
+  login: (data: ILoginData) => Promise<void>;
+  goToCadastro: () => void;
+  registerUser: (data: IUserRegister) => Promise<void>;
+  exit: () => void;
+  setModalAdd: React.Dispatch<React.SetStateAction<boolean>>;
+  addTech: (data: ITittleTech) => Promise<void>;
+  removeTech: (data: string) => Promise<void>;
+  logout: () => void;
+}
+const AuthProvider = ({ children }: IAuthProviderProps) => {
+  const [user, setUser] = useState<IUser>({} as IUser);
   const [loading, setLoading] = useState(true);
   const [modalAdd, setModalAdd] = useState(false);
 
   const navigate = useNavigate();
 
   /* função que registra o usuario */
-  async function registerUser(data) {
+  async function registerUser(data: IUserRegister) {
     await api.post('/users', data).then(() => {
       toast.success('login realizado com sucesso', {
         duration: 2000,
@@ -33,7 +80,7 @@ const AuthProvider = ({ children }) => {
     const token = localStorage.getItem('@TOKEN');
     if (token) {
       try {
-        api.defaults.headers.Authorization = `Bearer ${token}`;
+        api.defaults.headers.common.Authorization = `Bearer ${token}`;
 
         const { data } = await api.get('/profile');
         setUser(data);
@@ -54,11 +101,11 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem('@TOKEN');
   }
   /* função de login do usuario */
-  const login = async (data) => {
-    const response = await api.post('/sessions', data);
+  const login = async (data: ILoginData) => {
+    const response = await api.post<ISession>('/sessions', data);
 
     const { token } = response.data;
-    api.defaults.headers.Authorization = `Bearer ${token}`;
+    api.defaults.headers.common.Authorization = `Bearer ${token}`;
     setUser(response.data.user);
 
     localStorage.setItem('@USERID', response.data.user.id);
@@ -77,7 +124,7 @@ const AuthProvider = ({ children }) => {
     navigate('/cadastro', { replace: true });
   }
   /* função para adicionar novas techs */
-  async function addTech(data) {
+  async function addTech(data: ITittleTech) {
     await api.post('/users/techs', data).then((response) => {
       if (response) {
         toast.success('Tech criada com sucesso', {
@@ -91,8 +138,8 @@ const AuthProvider = ({ children }) => {
     });
   }
   /* função para remover techs */
-  async function removeTech(techID) {
-    await api.delete(`/users/techs/${techID}`).then((resp) => {
+  async function removeTech(data: string) {
+    await api.delete(`/users/techs/${data}`).then((resp) => {
       if (resp) {
         toast.success('Tech removida com sucesso', {
           duration: 2000,

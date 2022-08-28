@@ -40,7 +40,7 @@ export const Home = () => {
         </div>
         <div className="divUl">
           <ul>
-            {user.techs.map((resp) => (
+            {user.techs?.map((resp) => (
               <li key={resp.id}>
                 <div className="divTechs">
                   <span>{resp.title}</span>
